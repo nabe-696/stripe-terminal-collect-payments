@@ -26,3 +26,13 @@ const PORT = process.env.PORT || 4242;
 app.listen(PORT, () => {
   console.log(`Node server listening at http://localhost:${PORT}`);
 });
+
+app.post("/connection_token", async (req, res) => {
+  try {
+    const connectionToken = await stripe.terminal.connectionTokens.create();
+    res.json(connectionToken);
+  } catch (err) {
+    console.error("Error creating connection token:", err);
+    res.status(500).json({ error: err.message });
+  }
+});

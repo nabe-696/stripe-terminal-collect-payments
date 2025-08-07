@@ -22,6 +22,7 @@ app.get("/readers", async (req, res) => {
   }
 });
 
-app.listen(4242, () =>
-  console.log(`Node server listening at http://localhost:4242`)
-);
+const PORT = process.env.PORT || 4242;
+app.listen(PORT, () => {
+  console.log(`Node server listening at http://localhost:${PORT}`);
+});
